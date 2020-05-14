@@ -776,11 +776,12 @@ public class Cachier extends javax.swing.JFrame {
         } else {
             String[] colon = {"num_facture","code_produit", "reference", "prix_vente", "stock_sortie", "subtotal"};
             String[] ls = {txtfacture.getText(), txtcodeProd.getText(), txtref.getText(), txtnvprix.getText(), txtsortie.getText(), lblTot1.getText()};
-            System.out.println(db.queryInsert("vente", colon, ls));
             try {
                 if (!test_stock()) { 
                     JOptionPane.showMessageDialog(this, "le stock est Limiter");
                 } else {
+                    System.out.println(db.queryInsert("vente", colon, ls));
+
                     def(); //true
                     table(); //true
                 }
