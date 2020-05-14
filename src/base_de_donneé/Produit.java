@@ -93,7 +93,7 @@ public class Produit extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(48, 185, 185));
-        jLabel1.setText("Gestion des Produit ");
+        jLabel1.setText("Gestion des Produits ");
 
         jPanel1.setBackground(new java.awt.Color(48, 185, 185));
 

@@ -38,8 +38,8 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_username = new javax.swing.JTextField();
-        txt_password = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        txt_password = new javax.swing.JPasswordField();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -117,18 +117,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        txt_password.setToolTipText("required");
-        txt_password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_passwordActionPerformed(evt);
-            }
-        });
-        txt_password.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                txt_passwordPropertyChange(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 0, 51));
 
@@ -141,14 +129,14 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jlabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jlabelLayout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(jlabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jlabelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jlabelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jlabelLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(txt_password))))
                     .addGroup(jlabelLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,9 +153,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jlabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jlabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jlabelLayout.createSequentialGroup()
+                        .addComponent(txt_password)
+                        .addGap(5, 5, 5)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -208,10 +198,6 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_passwordActionPerformed
-
     private void txt_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_usernameActionPerformed
@@ -247,10 +233,6 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void txt_passwordPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txt_passwordPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_passwordPropertyChange
 
     /**
      * @param args the command line arguments
@@ -297,7 +279,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel jlabel;
-    private javax.swing.JTextField txt_password;
+    private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_username;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,17 +5,48 @@
  */
 package base_de_donneé;
 
+import Application.BDD;
+import Application.Parameter;
+import Application.ResultSetTableModel;
+import java.sql.ResultSet;
+
 /**
  *
  * @author Asus
  */
 public class Recu extends javax.swing.JFrame {
-
+    ResultSet rs;
+    BDD db;
+    
     /**
      * Creates new form Recu
      */
     public Recu() {
+         db = new BDD(new Parameter().HOST_DB, new Parameter().USERNAME_DB, new Parameter().PASSWORD_DB, new Parameter().IPHOST, new Parameter().PORT);
         initComponents();
+        importer();
+        date();
+    }
+    
+    public void importer() {
+        String colon[] = {"num_facture","code_produit","reference","prix_vente","stock_sortie","subtotal"};
+        rs = db.fcSelectCommand(colon, "vente", "num_facture='" + Cachier.txtfacture.getText() + "'");
+        tbleImp.setModel(new ResultSetTableModel(rs));
+        lbltotal.setText(Cachier.lblTot2.getText());
+        lblcash.setText(Cachier.txtPaye.getText());
+        paye_apres();
+    }
+      public void date(){
+         
+        lbldate.setText(Cachier.lbl1.getText());
+        lblheure.setText(Cachier.lbl2.getText());
+    }
+      
+      public void paye_apres() {
+        int a = Integer.parseInt(Cachier.lblTot2.getText());
+        int b = Integer.parseInt(Cachier.txtPaye.getText());
+        int c = b - a;
+        lblPaye.setText(Integer.toString(c));
     }
 
     /**
@@ -40,10 +71,14 @@ public class Recu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lbltotal = new javax.swing.JLabel();
+        lblcash = new javax.swing.JLabel();
+        lblPaye = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        lbldate = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblheure = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -143,11 +178,17 @@ public class Recu extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setText("Payé aprés :");
 
-        jLabel5.setText("jLabel5");
+        lbltotal.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
+        lbltotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbltotal.setText("__");
 
-        jLabel6.setText("jLabel6");
+        lblcash.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
+        lblcash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblcash.setText("__");
 
-        jLabel7.setText("jLabel7");
+        lblPaye.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
+        lblPaye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPaye.setText("__");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -159,16 +200,16 @@ public class Recu extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel7))
+                        .addComponent(lblPaye))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6))
+                            .addComponent(lblcash))
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addGap(70, 70, 70)
-                            .addComponent(jLabel5))))
+                            .addComponent(lbltotal))))
                 .addContainerGap(75, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,19 +222,27 @@ public class Recu extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel5))
+                    .addComponent(lbltotal))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel6))
+                    .addComponent(lblcash))
                 .addGap(4, 4, 4)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel7))
+                    .addComponent(lblPaye))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jLabel8.setText("Date: ");
+
+        lbldate.setText("_____");
+
+        jLabel10.setText("heure :");
+
+        lblheure.setText("_____");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,55 +251,69 @@ public class Recu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblheure)
+                                .addGap(14, 14, 14)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lbldate)
+                                .addGap(139, 139, 139)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel8)
+                    .addComponent(lbldate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(lblheure)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(21, 21, 21))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(43, 43, 43))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(22, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Cachier p=new Cachier();
+        p.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.printComponents(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -293,18 +356,22 @@ public class Recu extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblPaye;
+    private javax.swing.JLabel lblcash;
+    private javax.swing.JLabel lbldate;
+    private javax.swing.JLabel lblheure;
+    private javax.swing.JLabel lbltotal;
     private javax.swing.JTable tbleImp;
     // End of variables declaration//GEN-END:variables
 }

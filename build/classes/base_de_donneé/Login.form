@@ -170,15 +170,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jLabel2" min="-2" pref="109" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="185" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="txt_password" min="-2" pref="142" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                                  <Component id="txt_password" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -203,9 +203,12 @@
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="txt_password" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel2" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="txt_password" max="32767" attributes="0"/>
+                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="41" max="32767" attributes="0"/>
               </Group>
@@ -240,15 +243,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_usernameActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_password">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="required"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_passwordActionPerformed"/>
-            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="txt_passwordPropertyChange"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -258,6 +252,8 @@
               <Color blue="33" green="0" red="cc" type="rgb"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="txt_password">
         </Component>
       </SubComponents>
     </Container>
